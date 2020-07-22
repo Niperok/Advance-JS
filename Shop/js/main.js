@@ -4,9 +4,11 @@ class ProductList {
     this.container = container;
     this.goods = [];
     this.allProducts = [];
+    this.totalPrice = 0;
 
     this.fetchProducts();
     this.render();
+    this.calcTotalPrice();
   }
 
   fetchProducts() {
@@ -26,6 +28,13 @@ class ProductList {
 
       this.allProducts.push(productObject);
       block.insertAdjacentHTML('beforeend', productObject.render());
+    }
+  }
+
+  calcTotalPrice() {
+    this.totalPrice = 0;
+    for (let product of this.allProducts) {
+      this.totalPrice += product.price;
     }
   }
 }
@@ -48,6 +57,19 @@ class ProductItem {
               </div>
           </div>`;
   }
+}
+
+class Cart {
+  constructor() { }
+  addProduct() { }
+  removeProduct() { }
+  calcTotalPrice() { }
+}
+
+class CartItem {
+  constructor() { }
+  addEventListeners() { }
+  render() { }
 }
 
 const list = new ProductList();
