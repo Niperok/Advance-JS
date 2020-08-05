@@ -3,15 +3,12 @@ Vue.component('products', {
         return {
             catalogUrl: '/catalogData.json',
             products: [],
-            filtered: [],
             imgCatalog: 'https://placehold.it/200x150',
+            filtered: [],
         }
     },
     methods: {
-        filter(){
-            let regexp = new RegExp(this.userSearch, 'i');
-            this.filtered = this.products.filter(el => regexp.test(el.product_name));
-        }
+
     },
     mounted(){
         this.$parent.getJson(`${API + this.catalogUrl}`)
