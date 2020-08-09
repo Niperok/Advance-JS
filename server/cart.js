@@ -8,8 +8,8 @@ const change = (cart, req) => {
   return JSON.stringify(cart, null, 4);
 };
 const del = (cart, req) => {
-  const find = cart.contents.find(el => el.id_product === +req.params.id);
-  find.quantity += req.body.quantity;
+  const find = cart.contents.find(el => el.id_product === +req.body.id_product);
+  find.quantity -= req.body.quantity;
   return JSON.stringify(cart, null, 4);
 };
 

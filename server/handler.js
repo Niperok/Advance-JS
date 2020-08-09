@@ -1,9 +1,11 @@
 const fs = require('fs');
 const cart = require('./cart');
+const moment = require('moment')
 
 const actions = {
   add: cart.add,
   change: cart.change,
+  dell: cart.del
 };
 
 const handler = (req, res, action, file) => {
@@ -18,7 +20,14 @@ const handler = (req, res, action, file) => {
         } else {
           res.send('{"result": 1}');
         }
-      })
+      });
+      const time = moment()
+      const log = {
+        action: action,
+        product: req.body.product_name,
+        time: time.format('h:mm:ss')
+      }
+      fs.appendFile('./server/db/stats.json', `\n${JSON.stringify(log)}`, () => {})
     }
   });
 };
